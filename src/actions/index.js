@@ -1,6 +1,7 @@
 import {
   EMAIL_CHANGED,
   PASSWORD_CHANGED,
+  LOGIN_USER,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL
 } from './types';
@@ -31,6 +32,7 @@ const loginUserFail = dispatch => {
 export const loginUser = ({ email, password }) => {
   //return a function that takes dispatch argument for use by Redux Thunk
   return dispatch => {
+    dispatch({ type: LOGIN_USER });
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
