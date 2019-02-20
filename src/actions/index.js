@@ -1,3 +1,5 @@
+import firebase from 'firebase';
+import { Actions } from 'react-native-router-flux';
 import {
   EMAIL_CHANGED,
   PASSWORD_CHANGED,
@@ -5,7 +7,6 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL
 } from './types';
-import firebase from 'firebase';
 
 export const emailChanged = text => {
   return {
@@ -22,7 +23,10 @@ export const passwordChanged = text => {
 };
 
 const loginUserSuccess = (dispatch, user) => {
+  //dispatches action via dispatch function passed via Redux Thunk
   dispatch({ type: LOGIN_USER_SUCCESS, payload: user });
+  //routes to scene using a key from one of the scenes defined in Router.js
+  Actions.main();
 };
 
 const loginUserFail = dispatch => {
